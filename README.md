@@ -28,4 +28,4 @@ module.exports = nextConfig;
 - Rotas
 - Map, Filter
 - Manipulação de formulário
-- Publicação na Vercel e na Netlify
+- Publicação na Vercel e na Netlify.
