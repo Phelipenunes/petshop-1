@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
-import Link from "next/link";
 import arrayPosts from "@/pages/api/array-posts";
+import Art from "@/components/ui/ListaPosts";
 
 export default function Home() {
   return (
@@ -17,16 +17,7 @@ export default function Home() {
       <StyledHome>
         <h2>Pet Notícias</h2>
         <StyledListaPosts>
-          {arrayPosts.map((art) => {
-            return (
-              <article key={art.id}>
-                <Link href="">
-                  <h3>{art.titulo}</h3>
-                  <p>{art.subtitulo}</p>
-                </Link>
-              </article>
-            );
-          })}
+          <Art>{arrayPosts}</Art>
         </StyledListaPosts>
       </StyledHome>
     </>
