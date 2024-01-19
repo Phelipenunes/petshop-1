@@ -53,4 +53,15 @@ const StyledProdutos = styled.section`
   h2::before {
     content: "🎁 ";
   }
+
+  article {
+    padding: 1rem;
+  }
+
+  @media screen and (min-width: 800px) {
+    div {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 `;
