@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 import Link from "next/link";
+import arrayPosts from "@/pages/api/array-posts";
 
 export default function Home() {
   return (
@@ -16,18 +17,16 @@ export default function Home() {
       <StyledHome>
         <h2>Pet Notícias</h2>
         <StyledListaPosts>
-          <article>
-            <Link href="">
-              <h3>Título do post...</h3>
-              <p>Subtítulo do post</p>
-            </Link>
-          </article>
-          <article>
-            <Link href="">
-              <h3>Título do post...</h3>
-              <p>Subtítulo do post</p>
-            </Link>
-          </article>
+          {arrayPosts.map((art) => {
+            return (
+              <article key={art.id}>
+                <Link href="">
+                  <h3>{art.titulo}</h3>
+                  <p>{art.subtitulo}</p>
+                </Link>
+              </article>
+            );
+          })}
         </StyledListaPosts>
       </StyledHome>
     </>
@@ -55,6 +54,16 @@ const StyledListaPosts = styled.div`
   &:hover,
   &:focus {
     color: #0066ff;
+  }
+
+  @media screen and (min-width: 500px) {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    article {
+      width: 49%;
+    }
   }
 `;
 const StyledHome = styled.section`
