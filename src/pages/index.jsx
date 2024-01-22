@@ -1,8 +1,25 @@
 import Head from "next/head";
 import styled from "styled-components";
 import ListaPosts from "@/components/ListaPosts";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 export default function Home() {
+  const [listaDePosts, setListaDePosts] = useState([]);
+
+  useEffect(() => {
+    const carregarPosts = async () => {
+      try {
+        const resposta = await fetch(`http://10.20.46.30:2112/posts`);
+        const dados = await resposta.json();
+        setListaDePosts(dados);
+      } catch (error) {
+        console.error("Erro ao listar posts: " + error);
+      }
+    };
+    carregarPosts();
+  }, []);
+
   return (
     <>
       <Head>
@@ -15,7 +32,7 @@ export default function Home() {
       </Head>
       <StyledHome>
         <h2>Pet Notícias</h2>
-        <ListaPosts posts={[]} />
+        <ListaPosts posts={listaDePosts} />
       </StyledHome>
     </>
   );
