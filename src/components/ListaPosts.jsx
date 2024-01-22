@@ -2,6 +2,9 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export default function ListaPosts({ posts }) {
+  if (posts.length === 0)
+    return <h3 style={{ textAlign: "center" }}>Ainda não há posts</h3>;
+
   return (
     <StyledListaPosts>
       {posts.map((post) => {
