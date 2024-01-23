@@ -2,7 +2,6 @@ import Head from "next/head";
 import styled from "styled-components";
 import ListaPosts from "@/components/ListaPosts";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 
 export default function Home() {
   const [listaDePosts, setListaDePosts] = useState([]);
@@ -11,6 +10,12 @@ export default function Home() {
     const carregarPosts = async () => {
       try {
         const resposta = await fetch(`http://10.20.46.30:2112/posts`);
+
+        if (!resposta.ok) {
+          throw new Error(
+            `Erro requisição: ${resposta.status} - ${resposta.statusText}`
+          );
+        }
         const dados = await resposta.json();
         setListaDePosts(dados);
       } catch (error) {
