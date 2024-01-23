@@ -1,30 +1,31 @@
 import Head from "next/head";
 import styled from "styled-components";
 import ListaPosts from "@/components/ListaPosts";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import serverapi from "@/pages/api/server";
 
-export default function Home() {
-  const [listaDePosts, setListaDePosts] = useState([]);
+export async function getStaticProps() {
+  try {
+    const resposta = await fetch(`${serverapi}/posts`);
+    const dados = await resposta.json();
 
-  useEffect(() => {
-    const carregarPosts = async () => {
-      try {
-        const resposta = await fetch(`http://10.20.46.30:2112/posts`);
-
-        if (!resposta.ok) {
-          throw new Error(
-            `Erro requisição: ${resposta.status} - ${resposta.statusText}`
-          );
-        }
-        const dados = await resposta.json();
-        setListaDePosts(dados);
-      } catch (error) {
-        console.error("Erro ao listar posts: " + error);
-      }
+    if (!resposta.ok) {
+      throw new Error(
+        `Erro requisição: ${resposta.status} - ${resposta.statusText}`
+      );
+    }
+    return {
+      props: {
+        posts: dados,
+      },
     };
-    carregarPosts();
-  }, []);
+  } catch (error) {
+    console.error("Deu Ruim: " + error.massage);
+  }
+}
 
+export default function Home({ posts }) {
+  const [listaDePosts, setListaDePosts] = useState(posts);
   return (
     <>
       <Head>
