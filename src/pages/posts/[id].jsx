@@ -1,8 +1,39 @@
 import Container from "@/components/ui/Container";
 import Head from "next/head";
 import styled from "styled-components";
+import serverapi from "@/pages/api/server";
 
-export default function Post() {
+export async function getStaticProps({ params }) {
+  const { id } = params;
+  console.log(id);
+
+  try {
+    const resposta = await fetch(`${serverapi}/posts/${id}`);
+    if (!resposta.ok) {
+      throw new Error(
+        `Erro requisição: ${resposta.status} - ${resposta.statusText}`
+      );
+    }
+    const dados = await resposta.json();
+    return {
+      props: {
+        post: dados,
+      },
+    };
+  } catch (error) {
+    console.error("Deu Ruim: " + error.massage);
+  }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+}
+
+export default function Post({ post }) {
+  console.log(post);
   return (
     <>
       <Head>
@@ -19,4 +50,8 @@ export default function Post() {
     </>
   );
 }
-const StyledPost = styled.article``;
+const StyledPost = styled.article`
+  h2::before {
+    content: "📑 ";
+  }
+`;
