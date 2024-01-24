@@ -38,6 +38,18 @@ export async function getStaticProps() {
 
 export default function Home({ posts, categorias }) {
   const [listaDePosts, setListaDePosts] = useState(posts);
+  const [categoria, setCategoria] = useState(null);
+
+  const aplicarFiltro = (event) => {
+    const postEscolhido = event.currentTarget.textContent;
+    const cursosFiltrados = postEscolhido
+      ? posts.filter((post) => post.categoria === postEscolhido)
+      : posts;
+
+    setListaDePosts(cursosFiltrados);
+    setCategoria(postEscolhido);
+  };
+
   return (
     <>
       <Head>
@@ -46,16 +58,24 @@ export default function Home({ posts, categorias }) {
           name="description"
           content="Web App PetShop criado com Next.js como exemplo do curso Téc. Informática para Internet"
         />
-        <meta name="keywords" content="PetShop, Banho, Ração, Gato, Cachorro" />
+        <meta
+          name="keywords"
+          content="PetShop, Banho, Ração, Gato, Cachorro"
+          w
+        />
       </Head>
       <StyledHome>
         <h2>Pet Notícias</h2>
 
-        <div>
+        <StyledCategorias>
           {categorias.map((categoria, indice) => {
-            return <button key={indice}>{categoria}</button>;
+            return (
+              <button onClick={aplicarFiltro} key={indice}>
+                {categoria}
+              </button>
+            );
           })}
-        </div>
+        </StyledCategorias>
 
         <ListaPosts posts={listaDePosts} />
       </StyledHome>
@@ -66,5 +86,20 @@ export default function Home({ posts, categorias }) {
 const StyledHome = styled.section`
   h2::before {
     content: "📰 ";
+  }
+`;
+
+const StyledCategorias = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  button {
+    padding: 7px;
+    background-color: #0b0a3f;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    text-transform: capitalize;
+    font-size: 0.85vw;
   }
 `;
