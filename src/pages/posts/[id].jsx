@@ -5,7 +5,6 @@ import serverapi from "@/pages/api/server";
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-  console.log(id);
 
   try {
     const resposta = await fetch(`${serverapi}/posts/${id}`);

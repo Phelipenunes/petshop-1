@@ -14,9 +14,18 @@ export async function getStaticProps() {
         `Erro requisição: ${resposta.status} - ${resposta.statusText}`
       );
     }
+
+    const categorias = dados.map((post) => post.categoria);
+    console.log(categorias);
+
+    /* Gerando um array de categorias Únicas*/
+    const categoriasUnicas = [...new Set(categorias)];
+    console.log(categoriasUnicas);
+
     return {
       props: {
         posts: dados,
+        categorias: categoriasUnicas,
       },
     };
   } catch (error) {
@@ -27,7 +36,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({ posts }) {
+export default function Home({ posts, categorias }) {
   const [listaDePosts, setListaDePosts] = useState(posts);
   return (
     <>
@@ -41,6 +50,13 @@ export default function Home({ posts }) {
       </Head>
       <StyledHome>
         <h2>Pet Notícias</h2>
+
+        <div>
+          {categorias.map((categoria, indice) => {
+            return <button key={indice}>{categoria}</button>;
+          })}
+        </div>
+
         <ListaPosts posts={listaDePosts} />
       </StyledHome>
     </>
