@@ -39,15 +39,21 @@ export async function getStaticProps() {
 export default function Home({ posts, categorias }) {
   const [listaDePosts, setListaDePosts] = useState(posts);
   const [categoria, setCategoria] = useState(null);
+  const [filtroAtivo, setFiltroAtivo] = useState(false);
 
   const aplicarFiltro = (event) => {
     const postEscolhido = event.currentTarget.textContent;
     const cursosFiltrados = postEscolhido
       ? posts.filter((post) => post.categoria === postEscolhido)
       : posts;
-
+    setFiltroAtivo(true);
     setListaDePosts(cursosFiltrados);
     setCategoria(postEscolhido);
+  };
+
+  const limparFiltro = () => {
+    setFiltroAtivo(false);
+    setListaDePosts(posts);
   };
 
   return (
@@ -75,6 +81,11 @@ export default function Home({ posts, categorias }) {
               </button>
             );
           })}
+          {filtroAtivo && (
+            <button onClick={limparFiltro} className="limpar">
+              Limpar filtro
+            </button>
+          )}
         </StyledCategorias>
 
         <ListaPosts posts={listaDePosts} />
@@ -101,5 +112,15 @@ const StyledCategorias = styled.div`
     border: none;
     text-transform: capitalize;
     font-size: 0.85vw;
+  }
+
+  .limpar {
+    background-color: gray;
+    &:hover {
+      background-color: slategray;
+    }
+    &:before {
+      content: "";
+    }
   }
 `;
