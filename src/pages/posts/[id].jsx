@@ -22,6 +22,9 @@ export async function getStaticProps({ params }) {
     };
   } catch (error) {
     console.error("Deu Ruim: " + error.massage);
+    return {
+      notFound: true,
+    };
   }
 }
 
