@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ListaPosts from "@/components/ListaPosts";
 import { useState } from "react";
 import serverapi from "@/pages/api/server";
+import ListaCategorias from "@/components/ListaCategorias";
 
 export async function getStaticProps() {
   try {
@@ -38,7 +39,6 @@ export async function getStaticProps() {
 
 export default function Home({ posts, categorias }) {
   const [listaDePosts, setListaDePosts] = useState(posts);
-  const [categoria, setCategoria] = useState(null);
   const [filtroAtivo, setFiltroAtivo] = useState(false);
   const [categoriaAtiva, setCategoriaAtiva] = useState("");
 
@@ -49,7 +49,6 @@ export default function Home({ posts, categorias }) {
       : posts;
     setFiltroAtivo(true);
     setListaDePosts(cursosFiltrados);
-    setCategoria(postEscolhido);
 
     setCategoriaAtiva(postEscolhido);
   };
@@ -68,33 +67,18 @@ export default function Home({ posts, categorias }) {
           name="description"
           content="Web App PetShop criado com Next.js como exemplo do curso Téc. Informática para Internet"
         />
-        <meta
-          name="keywords"
-          content="PetShop, Banho, Ração, Gato, Cachorro"
-          w
-        />
+        <meta name="keywords" content="PetShop, Banho, Ração, Gato, Cachorro" />
       </Head>
       <StyledHome>
         <h2>Pet Notícias</h2>
 
-        <StyledCategorias>
-          {categorias.map((categoria, indice) => {
-            return (
-              <button
-                className={categoria === categoriaAtiva ? "ativo" : ""}
-                onClick={aplicarFiltro}
-                key={indice}
-              >
-                {categoria}
-              </button>
-            );
-          })}
-          {filtroAtivo && (
-            <button onClick={limparFiltro} className="limpar">
-              Limpar filtro
-            </button>
-          )}
-        </StyledCategorias>
+        <ListaCategorias
+          categorias={categorias}
+          aplicarFiltro={aplicarFiltro}
+          limparFiltro={limparFiltro}
+          filtroAtivo={filtroAtivo}
+          categoriaAtiva={categoriaAtiva}
+        />
 
         <ListaPosts posts={listaDePosts} />
       </StyledHome>
@@ -105,34 +89,5 @@ export default function Home({ posts, categorias }) {
 const StyledHome = styled.section`
   h2::before {
     content: "📰 ";
-  }
-`;
-
-const StyledCategorias = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  button {
-    padding: 7px;
-    background-color: #1b18c2;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    text-transform: capitalize;
-    font-size: 0.85vw;
-
-    &.ativo {
-      background-color: var(--cor-primaria-fundo);
-    }
-  }
-
-  .limpar {
-    background-color: gray;
-    &:hover {
-      background-color: slategray;
-    }
-    &:before {
-      content: "";
-    }
   }
 `;
