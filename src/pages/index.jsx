@@ -40,6 +40,7 @@ export default function Home({ posts, categorias }) {
   const [listaDePosts, setListaDePosts] = useState(posts);
   const [categoria, setCategoria] = useState(null);
   const [filtroAtivo, setFiltroAtivo] = useState(false);
+  const [categoriaAtiva, setCategoriaAtiva] = useState("");
 
   const aplicarFiltro = (event) => {
     const postEscolhido = event.currentTarget.textContent;
@@ -49,11 +50,14 @@ export default function Home({ posts, categorias }) {
     setFiltroAtivo(true);
     setListaDePosts(cursosFiltrados);
     setCategoria(postEscolhido);
+
+    setCategoriaAtiva(postEscolhido);
   };
 
   const limparFiltro = () => {
     setFiltroAtivo(false);
     setListaDePosts(posts);
+    setCategoriaAtiva("");
   };
 
   return (
@@ -76,7 +80,11 @@ export default function Home({ posts, categorias }) {
         <StyledCategorias>
           {categorias.map((categoria, indice) => {
             return (
-              <button onClick={aplicarFiltro} key={indice}>
+              <button
+                className={categoria === categoriaAtiva ? "ativo" : ""}
+                onClick={aplicarFiltro}
+                key={indice}
+              >
                 {categoria}
               </button>
             );
@@ -106,12 +114,16 @@ const StyledCategorias = styled.div`
   padding: 10px;
   button {
     padding: 7px;
-    background-color: #0b0a3f;
+    background-color: #1b18c2;
     color: white;
     border-radius: 5px;
     border: none;
     text-transform: capitalize;
     font-size: 0.85vw;
+
+    &.ativo {
+      background-color: var(--cor-primaria-fundo);
+    }
   }
 
   .limpar {
