@@ -45,3 +45,4 @@ module.exports = nextConfig;
 - Map, Filter
 - Manipulação de formulário
 - Publicação na Vercel e na Netlify
+- https://petshop-phelipe-default-rtdb.firebaseio.com/
