@@ -7,7 +7,7 @@ export async function getStaticProps({ params }) {
   const { id } = params;
 
   try {
-    const resposta = await fetch(`${serverapi}/posts/${id}`);
+    const resposta = await fetch(`${serverapi}/posts/${id}.json`);
     if (!resposta.ok) {
       throw new Error(
         `Erro requisição: ${resposta.status} - ${resposta.statusText}`

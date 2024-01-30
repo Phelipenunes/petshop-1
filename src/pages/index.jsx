@@ -7,8 +7,9 @@ import ListaCategorias from "@/components/ListaCategorias";
 
 export async function getStaticProps() {
   try {
-    const resposta = await fetch(`${serverapi}/posts`);
+    const resposta = await fetch(`${serverapi}/posts.json`);
     const dados = await resposta.json();
+    console.log(dados);
 
     if (!resposta.ok) {
       throw new Error(
@@ -16,7 +17,17 @@ export async function getStaticProps() {
       );
     }
 
-    const categorias = dados.map((post) => post.categoria);
+    /* colocando os dados dos objetos dentro de um array */
+    const arrayDePosts = Object.keys(dados).map((post) => {
+      return {
+        ...dados[post],
+        id: post,
+      };
+    });
+
+    console.log(arrayDePosts);
+
+    const categorias = arrayDePosts.map((post) => post.categoria);
     console.log(categorias);
 
     /* Gerando um array de categorias Únicas*/
@@ -25,7 +36,7 @@ export async function getStaticProps() {
 
     return {
       props: {
-        posts: dados,
+        posts: arrayDePosts,
         categorias: categoriasUnicas,
       },
     };
