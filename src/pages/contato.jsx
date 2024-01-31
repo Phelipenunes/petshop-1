@@ -113,6 +113,12 @@ const StyledContato = styled.section`
     display: flex;
     justify-content: space-between;
 
+    & + p {
+      color: red;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
     & label {
       font-weight: bold;
       width: 30%;
