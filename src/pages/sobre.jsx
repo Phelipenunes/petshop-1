@@ -1,3 +1,4 @@
+import Container from "@/components/ui/Container";
 import Head from "next/head";
 import styled from "styled-components";
 import Container from "@/components/ui/container";
@@ -15,29 +16,28 @@ export default function Sobre() {
       </Head>
       <StyledSobre>
         <h2>Sobre nosso PetShop</h2>
+
         <Container>
           <h3>Missão</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-            voluptas quas cupiditate iusto unde minus dolores animi aliquam
-            possimus voluptate numquam corporis incidunt a quia facere velit
-            nisi, delectus dicta?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+            totam veritatis facilis asperiores placeat. Quos tempore
+            exercitationem soluta recusandae eum.
           </p>
 
           <h3>Visão</h3>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum
-            explicabo excepturi consequatur aperiam id libero dolores minus ex
-            animi culpa harum sapiente assumenda ea error, sunt quos pariatur?
-            Neque, ullam?
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
+            aliquam praesentium aliquid soluta! Vel quasi earum debitis ullam,
+            aut maxime ratione soluta tenetur. Harum repellat dolor, inventore
+            cumque ipsam totam, fugiat ipsum delectus nulla quas fugit quam
+            reiciendis perspiciatis quaerat?
           </p>
 
           <h3>Valores</h3>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum
-            explicabo excepturi consequatur aperiam id libero dolores minus ex
-            animi culpa harum sapiente assumenda ea error, sunt quos pariatur?
-            Neque, ullam?
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+            est ducimus libero consequuntur nulla odit.
           </p>
         </Container>
       </StyledSobre>

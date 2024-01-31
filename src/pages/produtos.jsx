@@ -1,3 +1,4 @@
+import Container from "@/components/ui/Container";
 import Head from "next/head";
 import styled from "styled-components";
 import Container from "@/components/ui/container";
@@ -19,28 +20,28 @@ export default function Produtos() {
           <article>
             <h3>Banho</h3>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet,
-              ea, suscipit ipsam assumenda tenetur nobis repellat dolor ullam
-              vitae dolorem voluptatum rem minima id maxime, quidem deserunt!
-              Alias, perspiciatis id.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
+              quibusdam, optio iusto accusamus dignissimos reprehenderit enim?
+              Dolores, porro sequi laborum nulla eveniet nesciunt ducimus cum
+              culpa delectus quos, laudantium beatae.
             </p>
           </article>
           <article>
             <h3>Tosa</h3>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet,
-              ea, suscipit ipsam assumenda tenetur nobis repellat dolor ullam
-              vitae dolorem voluptatum rem minima id maxime, quidem deserunt!
-              Alias, perspiciatis id.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
+              quibusdam, optio iusto accusamus dignissimos reprehenderit enim?
+              Dolores, porro sequi laborum nulla eveniet nesciunt ducimus cum
+              culpa delectus quos, laudantium beatae.
             </p>
           </article>
           <article>
             <h3>Castração</h3>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet,
-              ea, suscipit ipsam assumenda tenetur nobis repellat dolor ullam
-              vitae dolorem voluptatum rem minima id maxime, quidem deserunt!
-              Alias, perspiciatis id.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
+              quibusdam, optio iusto accusamus dignissimos reprehenderit enim?
+              Dolores, porro sequi laborum nulla eveniet nesciunt ducimus cum
+              culpa delectus quos, laudantium beatae.
             </p>
           </article>
         </Container>
@@ -59,6 +60,8 @@ const StyledProdutos = styled.section`
   }
 
   @media screen and (min-width: 800px) {
+    /* Esta div é o StyledContainer, mas
+    com uma formatação que só vale para esta página Produtos */
     div {
       display: flex;
       justify-content: space-between;
