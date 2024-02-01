@@ -1,4 +1,4 @@
-import Container from "@/components/ui/Container";
+import Container from "@/components/ui/container";
 import Head from "next/head";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
